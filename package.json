@@ -1,0 +1,24 @@
+{
+  "name": "vaccineapp",
+  "version": "1.0.0",
+  "description": "VaccineApp BackEnd for the kruger challenge",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bmbravo/KrugerChallenge.git"
+  },
+  "keywords": [
+    "vaccines",
+    "employees",
+    "kruger"
+  ],
+  "author": "Bill Bravo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bmbravo/KrugerChallenge/issues"
+  },
+  "homepage": "https://github.com/bmbravo/KrugerChallenge#readme"
+}
