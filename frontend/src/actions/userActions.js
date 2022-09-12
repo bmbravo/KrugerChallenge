@@ -80,7 +80,7 @@ export const register =
           userName: [firstName.slice(0, 2), lastName].join("").toLowerCase(),
           identification,
           email,
-          password: "test@kruger",
+          password: identification,
         },
         config
       );

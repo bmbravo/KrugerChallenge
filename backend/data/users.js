@@ -2,14 +2,14 @@ import bcrypt from "bcryptjs";
 
 const users = [
   {
-    firstName: "Bill",
-    lastName: "Bravo",
-    userName: "bbravo",
-    identification: "0706321320",
+    firstName: "Kruger",
+    lastName: "Admin",
+    userName: "admin",
+    identification: "1111111111",
     email: "admin@kruger.com",
     birthDate: new Date("1998-11-03T00:00"),
-    address: "Mirador del Norte",
-    phoneNumber: "0999214229",
+    address: "Guayaquil",
+    phoneNumber: "0999999999",
     vaccinationData: {
       isVaccinated: true,
       typeOfVaccine: "Astra Zeneca",

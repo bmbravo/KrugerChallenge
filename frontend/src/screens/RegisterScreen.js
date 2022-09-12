@@ -6,6 +6,7 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
 import { register } from "../actions/userActions";
+import { USER_REGISTER_RESET } from "../constants/userConstants";
 
 const RegisterScreen = ({ match, history }) => {
   const [firstName, setFirstName] = useState("");
@@ -67,6 +68,7 @@ const RegisterScreen = ({ match, history }) => {
 
   useEffect(() => {
     if (successUpdate) {
+      dispatch({ type: USER_REGISTER_RESET });
       history.push("/admin/userlist");
     }
   }, [history, successUpdate]);
