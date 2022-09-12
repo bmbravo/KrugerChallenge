@@ -14,6 +14,10 @@ Especificaciones:
 
 Para empezar a probar la aplicación de forma local es nuesto computador, es necesario seguir los siguientes pasos.
 
+## Demo
+
+https://kruger-vaccineapp.herokuapp.com/
+
 ### Requisitos
 
 - Node.js y npm
