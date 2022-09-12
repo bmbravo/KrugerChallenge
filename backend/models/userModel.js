@@ -14,14 +14,15 @@ const userSchema = mongoose.Schema(
     },
     userName: {
       type: String,
-      required: [true, "Por favor ingrese un numero de usuario"],
+      required: [true, "Por favor ingrese un nombre de usuario"],
       unique: true,
     },
     identification: {
       type: String,
-      required: [true, "Ingrese una cedula válida"],
-      unique: true,
+      required: [true, "Ingrese una cédula válida"],
+      unique: [true, "Ya existe un usuario con esta cédula"],
       minLength: [10, "La cedula debe tener 10 digitos"],
+      maxLength: [10, "La cedula debe tener 10 digitos"],
     },
     email: {
       type: String,
@@ -36,8 +37,8 @@ const userSchema = mongoose.Schema(
     },
     phoneNumber: {
       type: String,
-      unique: true,
       minLength: [10, "El número de teléfono debe tener 10 digitos"],
+      maxLength: [10, "El número de teléfono debe tener 10 digitos"],
     },
     vaccinationData: {
       isVaccinated: { type: Boolean, default: false },
@@ -47,7 +48,7 @@ const userSchema = mongoose.Schema(
     },
     password: {
       type: String,
-      required: [true, "Por favor ingrese una constraseña"],
+      required: [true, "Por favor ingrese una contraseña"],
       minLength: 6,
     },
     isAdmin: {

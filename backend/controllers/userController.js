@@ -33,7 +33,8 @@ const authUser = asyncHandler(async (req, res) => {
 // @route POST /api/users
 // @access Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
+  const { firstName, lastName, userName, identification, email, password } =
+    req.body;
   const userExists = await User.findOne({ email });
 
   if (userExists) {
@@ -41,40 +42,18 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error("Ya existe un usuario con este correo");
   }
   const user = await User.create({
-    name,
+    firstName,
+    lastName,
+    userName,
+    identification,
     email,
     password,
   });
 
-  const verifyToken = user.getVerifyEmailToken();
   await user.save();
 
   if (user) {
-    const emailData = {
-      from: "discebra@hotmail.com",
-      to: email,
-      subject: "Verificar correo",
-      template_id: "d-64f4aa902eb440a3a889d2b8e2b8518e",
-      dynamic_template_data: {
-        action_url: process.env.CLIENT_URL + "/users/activate/" + verifyToken,
-      },
-    };
-    sgMail
-      .send(emailData)
-      .then(() => {
-        console.log(`El correo se ha enviado a ${email}`);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    res.status(201).json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin,
-      isVerified: user.isVerified,
-      token: generateToken(user._id),
-    });
+    res.status(201).json({ message: "Usuario Creado" });
   } else {
     res.status(400);
     throw new Error("Datos inválidos");
@@ -89,7 +68,13 @@ const getUserProfile = asyncHandler(async (req, res) => {
   if (user) {
     res.json({
       _id: user._id,
-      name: user.name,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      userName: user.userName,
+      birthDate: user.birthDate,
+      address: user.address,
+      phoneNumber: user.phoneNumber,
+      vaccinationData: user.vaccinationData,
       email: user.email,
       isAdmin: user.isAdmin,
     });
@@ -113,15 +98,34 @@ const getUsers = asyncHandler(async (req, res) => {
 const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
   if (user) {
-    user.name = req.body.name || user.name;
-    user.email = req.body.email || user.email;
-    if (req.body.password) {
-      user.password = req.body.password;
-    }
+    user.birthDate = req.body.birthDate || user.birthDate;
+    user.address = req.body.address || user.address;
+    user.phoneNumber = req.body.phoneNumber || user.phoneNumber;
+
+    user.vaccinationData.isVaccinated = req.body.vaccinationData.isVaccinated;
+
+    user.vaccinationData.typeOfVaccine =
+      req.body.vaccinationData.typeOfVaccine ||
+      user.vaccinationData.typeOfVaccine;
+
+    user.vaccinationData.dateOfVaccination =
+      req.body.vaccinationData.dateOfVaccination ||
+      user.vaccinationData.dateOfVaccination;
+
+    user.vaccinationData.numberOfDoses =
+      req.body.vaccinationData.numberOfDoses ||
+      user.vaccinationData.numberOfDoses;
+
     const updatedUser = await user.save();
     res.json({
       _id: updatedUser._id,
-      name: updatedUser.name,
+      firstName: updatedUser.firstName,
+      lastName: updatedUser.lastName,
+      userName: updatedUser.userName,
+      birthDate: updatedUser.birthDate,
+      address: updatedUser.address,
+      phoneNumber: updatedUser.phoneNumber,
+      vaccinationData: updatedUser.vaccinationData,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
       token: generateToken(updatedUser._id),
@@ -166,13 +170,17 @@ const getUserById = asyncHandler(async (req, res) => {
 const updateUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
   if (user) {
-    user.name = req.body.name || user.name;
+    user.firstName = req.body.firstName || user.firstName;
+    user.lastName = req.body.lastName || user.lastName;
+    user.identification = req.body.identification || user.identification;
     user.email = req.body.email || user.email;
     user.isAdmin = req.body.isAdmin;
     const updatedUser = await user.save();
     res.json({
       _id: updatedUser._id,
-      name: updatedUser.name,
+      firstName: updatedUser.firstName,
+      lastName: updatedUser.lastName,
+      identification: updatedUser.identification,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
     });
