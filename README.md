@@ -1,4 +1,4 @@
-## Krugger Challenge
+## Kruger Challenge
 
 En esta aplicación me he enfocado en desarrollar el front-end para una aplicación web enfocada a registrar el estado de vacunación de los empleados de Kruger Corporation.
 
