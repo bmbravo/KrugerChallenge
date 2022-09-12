@@ -1,22 +1,22 @@
 ## Krugger Challenge
 
-En este aplicación me he enfocado en desarrollar el front-end para una aplicación web enfocada a registra el estado de vacunación de los empleados de Kruger Corporation
+En esta aplicación me he enfocado en desarrollar el front-end para una aplicación web enfocada a registrar el estado de vacunación de los empleados de Kruger Corporation.
 
 Especificaciones:
 
-- Se desarrolló un back-end para servir todos los datos necesarios, se uso Express.js, Mongoose y MongoDB como tecnologias principales.
+- Se desarrolló un back-end para servir todos los datos necesarios, se uso Express.js, Mongoose y MongoDB como tecnologías principales.
 - En el front-end se uso React.js para los diferentes componentes y pantallas de la aplicación, como store de datos se utilizó Redux y React-Router para manejar las rutas.
-- El rol de `Administrador` tiene acceso a un menú que le permite visualizar a todos los empleados registrados y editar su información, tambien pueded registrar nuevos empleados en la aplicación.
+- El rol de `Administrador` tiene acceso a un menú que le permite visualizar a todos los empleados registrados y editar su información, tambien puede registrar nuevos empleados en la aplicación.
 - Como usuario normal, tenemos acceso para visualizar y editar nuestra información.
-- Cuando un `Administrador` registra un nuevo empleado, automaticamente se crea un usuario y contraseña, el usuario se crea a partir de la primera letra de su primer nombre y su primer apellido y la contraseña es su número de cedula.
-
-## Instalación local
-
-Para empezar a probar la aplicación de forma local es nuesto computador, es necesario seguir los siguientes pasos.
+- Cuando un `Administrador` registra un nuevo empleado, automaticamente se crea un usuario y contraseña, el usuario se crea a partir de las dos primeras letras de su primer nombre más su primer apellido y la contraseña es su número de cedula.
 
 ## Demo
 
 https://kruger-vaccineapp.herokuapp.com/
+
+## Instalación local
+
+Para empezar a probar la aplicación de forma local en nuesto computador, es necesario seguir los siguientes pasos.
 
 ### Requisitos
 
